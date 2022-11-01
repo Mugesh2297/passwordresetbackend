@@ -31,7 +31,7 @@ app.post("/forgotpassword", async(req,res,next)=>{
         res.status(400).send({msg: "User Not Exists"}) 
       }
       const token = jwt.sign(existUser,process.env.SECRET_KEY, {expiresIn: "2m"});
-        const link = `http://localhost:3000/resetpass/${existUser._id}/${token}`;
+        const link = `https://passwordreset22.netlify.app/resetpass/${existUser._id}/${token}`;
           console.log(link);
     
           var transporter = nodemailer.createTransport({
