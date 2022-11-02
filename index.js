@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());//to parse request of body 
-app.post("/forgotpassword", async(req,res,next)=>{
+app.post("/forgotpassword", cors(), async(req,res,next)=>{
     try{
         const existUser = await mongo.selectedDb.
       collection("users").findOne({email: req.body.email});
@@ -60,7 +60,7 @@ app.post("/forgotpassword", async(req,res,next)=>{
     
     
     }catch(err){
-      res.status(500).json({ msg: 'Something Went Wrong' });
+      res.status(500);
       console.log(err);
     }
     });
